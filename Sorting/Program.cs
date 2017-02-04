@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Sorting
 {
+    /*
+     * Useful Links:
+     * Sorting Algorithms: https://www.toptal.com/developers/sorting-algorithms/
+     * Big-O Explained: https://justin.abrah.ms/computer-science/big-o-notation-explained.html
+     * Insertion Sort (Video with explanation and pseudo code): https://www.youtube.com/watch?v=DFG-XuyPYUQ
+     * */
     class Program
     {
         static void Main(string[] args)
