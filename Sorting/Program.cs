@@ -11,16 +11,24 @@ namespace Sorting
      * Sorting Algorithms: https://www.toptal.com/developers/sorting-algorithms/
      * Big-O Explained: https://justin.abrah.ms/computer-science/big-o-notation-explained.html
      * Insertion Sort (Video with explanation and pseudo code): https://www.youtube.com/watch?v=DFG-XuyPYUQ
+     * Selection Sort (Video with explanation and pseudo code): https://www.youtube.com/watch?v=f8hXR_Hvybo
      * */
     class Program
     {
         static void Main(string[] args)
         {
             int[] reversedArray = { 6, 5, 4, 3, 2, 1 };
+            string[] strings = { "apple",
+                                "peach",
+                                "straw",
+                                "spork" };
 
-            Algorithms.InsertionSort(reversedArray);
 
-            DisplayArray(reversedArray, "Insertion Sort - Reversed Data: ");
+            DisplayArray(Algorithms.InsertionSort(reversedArray), "Insertion Sort - Reversed Data: ");
+            DisplayArray(Algorithms.InsertionSortGeneric(strings), "Generic Insertion Sort- Reversed Data: ");
+
+            DisplayArray(Algorithms.SelectionSort(reversedArray), "Selection Sort - Reversed Data: ");
+            DisplayArray(Algorithms.SelectionSortGeneric(strings), "Generic Selection Sort - Reversed Data: ");
 
             Console.ReadKey();
         }

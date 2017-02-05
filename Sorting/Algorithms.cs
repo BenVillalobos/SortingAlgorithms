@@ -7,52 +7,138 @@ namespace Sorting
 {
     public static class Algorithms
     {
-        /*  INSERTION SORT
-         *  Time complexity: O(n^2).
+
+        /* DEFINITIONS
+         * Stable: A sorting algorithm is said to be stable if two objects with equal keys appear in the same order in sorted output as they appear in the input array to be sorted
+         */
+
+
+        /*  INSERTION SORT (Stable)
+         *  Time complexity: O(n^2) comparisons and swaps.
+         *  Pros: Works best for nearly sorted arrays.
+         *  Cons: Terrible for a reversed array.
          *  
          *  Concept:
-         *  Iterate through the array. O(n)
-         *  Compare the current item to every item before it. O(n)
-         *  Place the current item in front of the first item that it is less than. O(1)
+         *  As we iterate through the array, compare the current item to every item before it to keep it sorted.
+         *  
+         *  Steps:
+         *  Iterate through the array.
+         *  Compare the current item to every item before it.
+         *  Place the current item in front of the first item that it is greater than.
+         *  Repeat
          * */
         public static int[] InsertionSort(int[] data)
         {
-            int currentElement = 0;
-
+            int[] copiedData = new int[data.Length];
+            data.CopyTo(copiedData, 0);
             //O(n)
-            for (int i = 0, j = 0; i < data.Length; i++) 
+            for (int i = 0, j = 0; i < copiedData.Length; i++)
             {
-                //O(1)
-                currentElement = data[i];
 
                 //O(n)
                 //In the worst case, the final item should be the first item.
-                for (j = i; j > 0 && data[j-1] > currentElement; j--) 
+                for (j = i; j > 0 && copiedData[j - 1] > copiedData[j]; j--)
                 {
+                    int temp = copiedData[j];
+
                     //O(1)
-                    data[j] = data[j - 1];
+                    copiedData[j] = copiedData[j - 1];
+
+                    //O(1)
+                    copiedData[j-1] = temp;
                 }
-                //O(1)
-                data[j] = currentElement;
             }
-            return data;
+            return copiedData;
         }
-        
-        //Just for fun
-        public static void InsertionSortGeneric<T>(T[] data) 
+
+        //Generic just for fun
+        public static T[] InsertionSortGeneric<T>(T[] data)
             where T : IComparable<T>
         {
-            T currentElement;
+            T[] copiedData = new T[data.Length];
+            data.CopyTo(copiedData, 0);
 
-            for (int i = 0, j = 0; i < data.Length; i++)
+            for (int i = 0, j = 0; i < copiedData.Length; i++)
             {
-                currentElement = data[i];
-                for (j = i; j > 0 && data[j-1].CompareTo(currentElement) > 0; j--)
+                for (j = i; j > 0 && copiedData[j - 1].CompareTo(copiedData[j]) > 0; j--)
                 {
-                    data[j] = data[j - 1];
+                    T temp = copiedData[j];
+                    copiedData[j] = copiedData[j - 1];
+                    copiedData[j-1] = temp;
                 }
-                data[j] = currentElement;
             }
+            return copiedData;
+        }
+
+        /*  SELECTION SORT (Unstable)
+        *  Time complexity: O(n^2) comparisons. O(n) swaps.
+        *  Pros: Minimizes number of swaps.
+        *  Cons: In different types of arrays (nearly sorted, random, reversed), they all take the same time to complete.
+        *  
+        *  Concept:
+        *  Iterate through the array and find the smallest number. Place that number at the beginning.
+        *  Iterate through the unsorted portion and swap the next smallest with the number in front of the last smallest number (which should now be at the beginning).
+        *  
+        *  Steps:
+        *  Iterate through unsorted portion of array.
+        *  Find the smallest item, place in sorted portion.
+        *  Place that item next in the sorted portion of the list.
+        *  Repeat
+        * */
+
+        public static int[] SelectionSort(int[] data)
+        {
+            int[] copiedData = new int[data.Length];
+            data.CopyTo(copiedData, 0);
+
+            //O(n)
+            for (int i = 0, temp = 0; i < copiedData.Length; i++)
+            {
+                int smallest = i;
+
+                //O(n)
+                for (int j = i + 1; j < copiedData.Length; j++)
+                {
+                    if (copiedData[j] < copiedData[smallest])
+                    {
+                        smallest = j;
+                    }
+                }
+
+                //O(1)
+                temp = copiedData[i];
+                copiedData[i] = copiedData[smallest];
+                copiedData[smallest] = temp;
+            }
+            return copiedData;
+        }
+
+        public static T[] SelectionSortGeneric<T>(T[] data)
+            where T: IComparable<T>
+        {
+            T[] copiedData = new T[data.Length];
+            data.CopyTo(copiedData, 0);
+
+            //O(n)
+            for (int i = 0; i < copiedData.Length; i++)
+            {
+                int smallest = i;
+
+                //O(n)
+                for (int j = i + 1; j < copiedData.Length; j++)
+                {
+                    if (copiedData[j].CompareTo(copiedData[smallest]) < 0)
+                    {
+                        smallest = j;
+                    }
+                }
+
+                //O(1)
+                T temp = copiedData[i];
+                copiedData[i] = copiedData[smallest];
+                copiedData[smallest] = temp;
+            }
+            return copiedData;
         }
     }
 }
