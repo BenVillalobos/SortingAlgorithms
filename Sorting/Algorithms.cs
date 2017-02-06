@@ -140,5 +140,70 @@ namespace Sorting
             }
             return copiedData;
         }
+
+		/* BUBBLE SORT (Stable)
+		 * Time Complexity: O(n^2) swaps and comparisons.
+		 * Pros: Adapts better to nearly sorted lists. Becomes O(n)
+		 * Cons: Reversed array takes the most time.
+		 * 
+		 * Concept & Steps: 
+		 * Iterate through the array from back to front (or front to back). 
+		 * Constantly check current item to the next, if not in order then swap.
+		 * If a swap occurred and we hit the sorted portion, repeat. If no swap occurred, we're sorted.
+		 */
+		public static int[] BubbleSort(int[] data)
+		{
+			int[] copiedData = new int[data.Length];
+			data.CopyTo(copiedData, 0);
+
+			bool swapped = true;
+			//O(n)
+			for (int i = 0; i < copiedData.Length && swapped; i++)
+			{
+				swapped = false;
+
+				//O(n)
+				for (int j = copiedData.Length-1; j > i; j--)
+				{
+					if (copiedData[j] < copiedData[j - 1])
+					{
+						int temp = copiedData[j];
+						copiedData[j] = copiedData[j - 1];
+						copiedData[j - 1] = temp;
+						swapped = true;
+					}
+				}
+			}
+
+			return copiedData;
+		}
+
+		public static T[] BubbleSortGeneric<T>(T[] data)
+			where T: IComparable
+		{
+			T[] copiedData = new T[data.Length];
+			data.CopyTo(copiedData, 0);
+
+			bool swapped = true;
+			//O(n)
+			for (int i = 0; i < copiedData.Length && swapped; i++)
+			{
+				swapped = false;
+
+				//O(n)
+				for (int j = copiedData.Length - 1; j > i; j--)
+				{
+					if (copiedData[j].CompareTo(copiedData[j - 1]) < 0)
+					{
+						T temp = copiedData[j];
+						copiedData[j] = copiedData[j - 1];
+						copiedData[j - 1] = temp;
+						swapped = true;
+					}
+				}
+			}
+
+			return copiedData;
+		}
     }
 }

@@ -23,12 +23,14 @@ namespace Sorting
                                 "straw",
                                 "spork" };
 
-
             DisplayArray(Algorithms.InsertionSort(reversedArray), "Insertion Sort - Reversed Data: ");
             DisplayArray(Algorithms.InsertionSortGeneric(strings), "Generic Insertion Sort- Reversed Data: ");
 
             DisplayArray(Algorithms.SelectionSort(reversedArray), "Selection Sort - Reversed Data: ");
             DisplayArray(Algorithms.SelectionSortGeneric(strings), "Generic Selection Sort - Reversed Data: ");
+
+			DisplayArray(Algorithms.BubbleSort(reversedArray), "Bubble Sort - Reversed Data: ");
+			DisplayArray(Algorithms.BubbleSortGeneric(strings), "Generic Bubble Sort - Reversed Data: ");
 
             Console.ReadKey();
         }
