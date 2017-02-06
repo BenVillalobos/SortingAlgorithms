@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Sorting
 {
-    public static class Algorithms
-    {
+	public static class Algorithms
+	{
 
-        /* DEFINITIONS
+		/* DEFINITIONS
          * Stable: A sorting algorithm is said to be stable if two objects with equal keys appear in the same order in sorted output as they appear in the input array to be sorted
          */
 
 
-        /*  INSERTION SORT (Stable)
+		/*  INSERTION SORT (Stable)
          *  Time complexity: O(n^2) comparisons and swaps.
          *  Pros: Works best for nearly sorted arrays.
          *  Cons: Terrible for a reversed array.
@@ -27,50 +27,50 @@ namespace Sorting
          *  Place the current item in front of the first item that it is greater than.
          *  Repeat
          * */
-        public static int[] InsertionSort(int[] data)
-        {
-            int[] copiedData = new int[data.Length];
-            data.CopyTo(copiedData, 0);
-            //O(n)
-            for (int i = 0, j = 0; i < copiedData.Length; i++)
-            {
+		public static int[] InsertionSort(int[] data)
+		{
+			int[] copiedData = new int[data.Length];
+			data.CopyTo(copiedData, 0);
+			//O(n)
+			for (int i = 0, j = 0; i < copiedData.Length; i++)
+			{
 
-                //O(n)
-                //In the worst case, the final item should be the first item.
-                for (j = i; j > 0 && copiedData[j - 1] > copiedData[j]; j--)
-                {
-                    int temp = copiedData[j];
+				//O(n)
+				//In the worst case, the final item should be the first item.
+				for (j = i; j > 0 && copiedData[j - 1] > copiedData[j]; j--)
+				{
+					int temp = copiedData[j];
 
-                    //O(1)
-                    copiedData[j] = copiedData[j - 1];
+					//O(1)
+					copiedData[j] = copiedData[j - 1];
 
-                    //O(1)
-                    copiedData[j-1] = temp;
-                }
-            }
-            return copiedData;
-        }
+					//O(1)
+					copiedData[j - 1] = temp;
+				}
+			}
+			return copiedData;
+		}
 
-        //Generic just for fun
-        public static T[] InsertionSortGeneric<T>(T[] data)
-            where T : IComparable<T>
-        {
-            T[] copiedData = new T[data.Length];
-            data.CopyTo(copiedData, 0);
+		//Generic just for fun
+		public static T[] InsertionSortGeneric<T>(T[] data)
+			where T : IComparable<T>
+		{
+			T[] copiedData = new T[data.Length];
+			data.CopyTo(copiedData, 0);
 
-            for (int i = 0, j = 0; i < copiedData.Length; i++)
-            {
-                for (j = i; j > 0 && copiedData[j - 1].CompareTo(copiedData[j]) > 0; j--)
-                {
-                    T temp = copiedData[j];
-                    copiedData[j] = copiedData[j - 1];
-                    copiedData[j-1] = temp;
-                }
-            }
-            return copiedData;
-        }
+			for (int i = 0, j = 0; i < copiedData.Length; i++)
+			{
+				for (j = i; j > 0 && copiedData[j - 1].CompareTo(copiedData[j]) > 0; j--)
+				{
+					T temp = copiedData[j];
+					copiedData[j] = copiedData[j - 1];
+					copiedData[j - 1] = temp;
+				}
+			}
+			return copiedData;
+		}
 
-        /*  SELECTION SORT (Unstable)
+		/*  SELECTION SORT (Unstable)
         *  Time complexity: O(n^2) comparisons. O(n) swaps.
         *  Pros: Minimizes number of swaps.
         *  Cons: In different types of arrays (nearly sorted, random, reversed), they all take the same time to complete.
@@ -86,60 +86,60 @@ namespace Sorting
         *  Repeat
         * */
 
-        public static int[] SelectionSort(int[] data)
-        {
-            int[] copiedData = new int[data.Length];
-            data.CopyTo(copiedData, 0);
+		public static int[] SelectionSort(int[] data)
+		{
+			int[] copiedData = new int[data.Length];
+			data.CopyTo(copiedData, 0);
 
-            //O(n)
-            for (int i = 0, temp = 0; i < copiedData.Length; i++)
-            {
-                int smallest = i;
+			//O(n)
+			for (int i = 0, temp = 0; i < copiedData.Length; i++)
+			{
+				int smallest = i;
 
-                //O(n)
-                for (int j = i + 1; j < copiedData.Length; j++)
-                {
-                    if (copiedData[j] < copiedData[smallest])
-                    {
-                        smallest = j;
-                    }
-                }
+				//O(n)
+				for (int j = i + 1; j < copiedData.Length; j++)
+				{
+					if (copiedData[j] < copiedData[smallest])
+					{
+						smallest = j;
+					}
+				}
 
-                //O(1)
-                temp = copiedData[i];
-                copiedData[i] = copiedData[smallest];
-                copiedData[smallest] = temp;
-            }
-            return copiedData;
-        }
+				//O(1)
+				temp = copiedData[i];
+				copiedData[i] = copiedData[smallest];
+				copiedData[smallest] = temp;
+			}
+			return copiedData;
+		}
 
-        public static T[] SelectionSortGeneric<T>(T[] data)
-            where T: IComparable<T>
-        {
-            T[] copiedData = new T[data.Length];
-            data.CopyTo(copiedData, 0);
+		public static T[] SelectionSortGeneric<T>(T[] data)
+			where T : IComparable<T>
+		{
+			T[] copiedData = new T[data.Length];
+			data.CopyTo(copiedData, 0);
 
-            //O(n)
-            for (int i = 0; i < copiedData.Length; i++)
-            {
-                int smallest = i;
+			//O(n)
+			for (int i = 0; i < copiedData.Length; i++)
+			{
+				int smallest = i;
 
-                //O(n)
-                for (int j = i + 1; j < copiedData.Length; j++)
-                {
-                    if (copiedData[j].CompareTo(copiedData[smallest]) < 0)
-                    {
-                        smallest = j;
-                    }
-                }
+				//O(n)
+				for (int j = i + 1; j < copiedData.Length; j++)
+				{
+					if (copiedData[j].CompareTo(copiedData[smallest]) < 0)
+					{
+						smallest = j;
+					}
+				}
 
-                //O(1)
-                T temp = copiedData[i];
-                copiedData[i] = copiedData[smallest];
-                copiedData[smallest] = temp;
-            }
-            return copiedData;
-        }
+				//O(1)
+				T temp = copiedData[i];
+				copiedData[i] = copiedData[smallest];
+				copiedData[smallest] = temp;
+			}
+			return copiedData;
+		}
 
 		/* BUBBLE SORT (Stable)
 		 * Time Complexity: O(n^2) swaps and comparisons.
@@ -163,7 +163,7 @@ namespace Sorting
 				swapped = false;
 
 				//O(n)
-				for (int j = copiedData.Length-1; j > i; j--)
+				for (int j = copiedData.Length - 1; j > i; j--)
 				{
 					if (copiedData[j] < copiedData[j - 1])
 					{
@@ -179,7 +179,7 @@ namespace Sorting
 		}
 
 		public static T[] BubbleSortGeneric<T>(T[] data)
-			where T: IComparable
+			where T : IComparable
 		{
 			T[] copiedData = new T[data.Length];
 			data.CopyTo(copiedData, 0);
@@ -205,5 +205,17 @@ namespace Sorting
 
 			return copiedData;
 		}
+
+		public static int[] MergeSort(int[] data)
+		{
+			int[] copiedData = new int[data.Length];
+			data.CopyTo(copiedData, 0);
+
+
+
+			return copiedData;
+		}
+
+
     }
 }

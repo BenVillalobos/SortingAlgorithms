@@ -32,6 +32,8 @@ namespace Sorting
 			DisplayArray(Algorithms.BubbleSort(reversedArray), "Bubble Sort - Reversed Data: ");
 			DisplayArray(Algorithms.BubbleSortGeneric(strings), "Generic Bubble Sort - Reversed Data: ");
 
+
+
             Console.ReadKey();
         }
 
