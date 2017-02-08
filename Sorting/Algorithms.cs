@@ -29,6 +29,8 @@ namespace Sorting
          * */
 		public static int[] InsertionSort(int[] data)
 		{
+			//Don't want to modify the data (for the purposes of my example)
+			//I realize this isn't smart in terms of memory.
 			int[] copiedData = new int[data.Length];
 			data.CopyTo(copiedData, 0);
 			//O(n)
@@ -55,6 +57,8 @@ namespace Sorting
 		public static T[] InsertionSortGeneric<T>(T[] data)
 			where T : IComparable<T>
 		{
+			//Don't want to modify the data (for the purposes of my example)
+			//I realize this isn't smart in terms of memory.
 			T[] copiedData = new T[data.Length];
 			data.CopyTo(copiedData, 0);
 
@@ -88,6 +92,8 @@ namespace Sorting
 
 		public static int[] SelectionSort(int[] data)
 		{
+			//Don't want to modify the data (for the purposes of my example)
+			//I realize this isn't smart in terms of memory.
 			int[] copiedData = new int[data.Length];
 			data.CopyTo(copiedData, 0);
 
@@ -116,6 +122,8 @@ namespace Sorting
 		public static T[] SelectionSortGeneric<T>(T[] data)
 			where T : IComparable<T>
 		{
+			//Don't want to modify the data (for the purposes of my example)
+			//I realize this isn't smart in terms of memory.
 			T[] copiedData = new T[data.Length];
 			data.CopyTo(copiedData, 0);
 
@@ -150,9 +158,11 @@ namespace Sorting
 		 * Iterate through the array from back to front (or front to back). 
 		 * Constantly check current item to the next, if not in order then swap.
 		 * If a swap occurred and we hit the sorted portion, repeat. If no swap occurred, we're sorted.
-		 */
+		 * */
 		public static int[] BubbleSort(int[] data)
 		{
+			//Don't want to modify the data (for the purposes of my example)
+			//I realize this isn't smart in terms of memory.
 			int[] copiedData = new int[data.Length];
 			data.CopyTo(copiedData, 0);
 
@@ -181,6 +191,8 @@ namespace Sorting
 		public static T[] BubbleSortGeneric<T>(T[] data)
 			where T : IComparable
 		{
+			//Don't want to modify the data (for the purposes of my example)
+			//I realize this isn't smart in terms of memory.
 			T[] copiedData = new T[data.Length];
 			data.CopyTo(copiedData, 0);
 
@@ -206,16 +218,75 @@ namespace Sorting
 			return copiedData;
 		}
 
+		//MergeSort helper function
+		static void Merge(int[] L, int[] R, int[] dataToModify)
+		{
+			//Notice that I'm not copying over the data into a "copiedData" array.
+			//At this point, it is safe to modify "dataToModify" because we know it won't modify the original data.
+
+			//We need individual counters for each array because elements aren't necessarily added in order.
+			int leftCounter, rightCounter, dataCounter;
+			leftCounter = rightCounter = dataCounter = 0;
+
+			//Compare the items in both arrays, placing the smaller into our data array.
+			while (leftCounter < L.Length && rightCounter < R.Length)
+			{
+				if (L[leftCounter] < R[rightCounter]) 
+				{ 
+					dataToModify[dataCounter++] = L[leftCounter++]; 
+				}
+				else 
+				{ 
+					dataToModify[dataCounter++] = R[rightCounter++]; 
+				}
+			}
+
+			//Once one of the arrays is completely transferred, transfer ALL of the other arrays elements (which are already sorted)
+			while (leftCounter < L.Length) 
+			{ 
+				dataToModify[dataCounter++] = L[leftCounter++];
+			}
+
+			while (rightCounter < R.Length) 
+			{ 
+				dataToModify[dataCounter++] = R[rightCounter++];
+			}
+		}
+		/* MERGE SORT (Stable)
+		 * 
+		 * Time Complexity: 
+		 * 
+		 * */
 		public static int[] MergeSort(int[] data)
 		{
+			//Don't sort if it is empty or only has 1 item.
+			if (data.Length < 2)
+			{
+				return data;
+			}
+
+			//Don't want to modify the data (for the purposes of my example).
+			//I realize this isn't smart in terms of memory.
 			int[] copiedData = new int[data.Length];
 			data.CopyTo(copiedData, 0);
 
+			int mid = copiedData.Length/2;
 
+			//Cut the array in half so we can handle them individually.
+			int[] Left = new int[mid];
+			int[] Right = new int[copiedData.Length - mid];
+
+			//Copy the data over.
+			Array.Copy(copiedData, Left, mid);
+			Array.Copy(copiedData, mid, Right, 0, Right.Length);
+
+			//Recursion! We must do exactly what we've just done to each individual array.
+			//For clarity, breakpoint your way through these calls to understand exactly what's happening.
+			Left = MergeSort(Left);
+			Right = MergeSort(Right);
+			Merge(Left, Right, copiedData);
 
 			return copiedData;
 		}
-
-
     }
 }

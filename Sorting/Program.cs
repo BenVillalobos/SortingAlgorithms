@@ -18,20 +18,27 @@ namespace Sorting
         static void Main(string[] args)
         {
             int[] reversedArray = { 6, 5, 4, 3, 2, 1 };
+			int[] randomArray = { 9, 3, 2, 10, 8, 6 };
+
             string[] strings = { "apple",
                                 "peach",
                                 "straw",
                                 "spork" };
 
             DisplayArray(Algorithms.InsertionSort(reversedArray), "Insertion Sort - Reversed Data: ");
-            DisplayArray(Algorithms.InsertionSortGeneric(strings), "Generic Insertion Sort- Reversed Data: ");
+			DisplayArray(Algorithms.InsertionSort(randomArray), "Insertion Sort - Random Data: ");
+            DisplayArray(Algorithms.InsertionSortGeneric(strings), "Insertion Sort Generic - Reversed Data: ");
 
             DisplayArray(Algorithms.SelectionSort(reversedArray), "Selection Sort - Reversed Data: ");
-            DisplayArray(Algorithms.SelectionSortGeneric(strings), "Generic Selection Sort - Reversed Data: ");
+			DisplayArray(Algorithms.SelectionSort(randomArray), "Selection Sort - Random Data: ");
+            DisplayArray(Algorithms.SelectionSortGeneric(strings), "Selection Sort Generic - Reversed Data: ");
 
 			DisplayArray(Algorithms.BubbleSort(reversedArray), "Bubble Sort - Reversed Data: ");
-			DisplayArray(Algorithms.BubbleSortGeneric(strings), "Generic Bubble Sort - Reversed Data: ");
+			DisplayArray(Algorithms.BubbleSort(randomArray), "Bubble Sort - Random Data: ");
+			DisplayArray(Algorithms.BubbleSortGeneric(strings), "Bubble Sort Generic - Reversed Data: ");
 
+			DisplayArray(Algorithms.MergeSort(reversedArray), "Merge Sort - Reversed Data: ");
+			DisplayArray(Algorithms.MergeSort(randomArray), "Merge Sort - Random Data: ");
 
 
             Console.ReadKey();
