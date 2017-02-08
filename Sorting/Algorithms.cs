@@ -10,12 +10,14 @@ namespace Sorting
 
 		/* DEFINITIONS
          * Stable: A sorting algorithm is said to be stable if two objects with equal keys appear in the same order in sorted output as they appear in the input array to be sorted
-         */
+         * Adaptive: The algorithm may be faster depending on how sorted the array is. 
+         * 			 If an algorithm is not adaptive, it may take the same time regardless of how array is sorted.
+         * */
 
 
 		/*  INSERTION SORT (Stable)
          *  Time complexity: O(n^2) comparisons and swaps.
-         *  Pros: Works best for nearly sorted arrays.
+         *  Pros: Adaptive. O(n) time for nearly sorted arrays.
          *  Cons: Terrible for a reversed array.
          *  
          *  Concept:
@@ -77,7 +79,7 @@ namespace Sorting
 		/*  SELECTION SORT (Unstable)
         *  Time complexity: O(n^2) comparisons. O(n) swaps.
         *  Pros: Minimizes number of swaps.
-        *  Cons: In different types of arrays (nearly sorted, random, reversed), they all take the same time to complete.
+        *  Cons: Not adaptive.
         *  
         *  Concept:
         *  Iterate through the array and find the smallest number. Place that number at the beginning.
@@ -151,7 +153,7 @@ namespace Sorting
 
 		/* BUBBLE SORT (Stable)
 		 * Time Complexity: O(n^2) swaps and comparisons.
-		 * Pros: Adapts better to nearly sorted lists. Becomes O(n)
+		 * Pros: Adaptive. O(n) time for nearly sorted lists.
 		 * Cons: Reversed array takes the most time.
 		 * 
 		 * Concept & Steps: 
@@ -252,9 +254,14 @@ namespace Sorting
 				dataToModify[dataCounter++] = R[rightCounter++];
 			}
 		}
+
 		/* MERGE SORT (Stable)
 		 * 
-		 * Time Complexity: 
+		 * Time Complexity: O(nlg(n))
+		 * Pros: Great if memory is not an issue.
+		 * Cons: If the size of the data is huge, this sort may not be ideal.
+		 * 		 Need extra space for linked lists.
+		 * 		 Not adaptive.
 		 * 
 		 * */
 		public static int[] MergeSort(int[] data)
