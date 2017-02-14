@@ -39,6 +39,8 @@ namespace Sorting
 
 			DisplayArray(Algorithms.MergeSort(reversedArray), "Merge Sort - Reversed Data: ");
 			DisplayArray(Algorithms.MergeSort(randomArray), "Merge Sort - Random Data: ");
+			DisplayArray(Algorithms.MergeSortGeneric(reversedArray), "Merge Sort Generic - Reversed Data: ");
+			DisplayArray(Algorithms.MergeSortGeneric(randomArray), "Merge Sort Generic - Random Data: ");
 
 
             Console.ReadKey();
