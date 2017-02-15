@@ -13,8 +13,9 @@ namespace Sorting
      * Big-O Explained: https://justin.abrah.ms/computer-science/big-o-notation-explained.html
      * Insertion Sort (Video): https://www.youtube.com/watch?v=DFG-XuyPYUQ
      * Selection Sort (Video): https://www.youtube.com/watch?v=f8hXR_Hvybo
-     * 
+     * Merge Sort (Video): https://www.youtube.com/watch?v=EeQ8pwjQxTM
      * Quick Sort (Video): https://www.youtube.com/watch?v=SLauY6PpjW4
+     * Quick Sort (Implementation): http://snipd.net/quicksort-in-c#comment-346
      * */
     class Program
     {
