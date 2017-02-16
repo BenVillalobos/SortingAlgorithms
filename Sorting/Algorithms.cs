@@ -270,6 +270,17 @@ namespace Sorting
 			return copiedData;
 		}
 
+		/* HEAP SORT (Unstable)
+		 * Time Complexity: O(nlg(n))
+		 * Space Complexity: O(lg(n)) if recursive, O(1) if not
+		 * Pros: O(nlg(n)) is guaranteed.
+		 * Cons: Even if the array is already sorted, the array gets "heapified"
+		 * */
+		public static int[] HeapSort(int[] data)
+		{
+			throw new NotImplementedException("Not implemented yet!");
+		}
+
 
 	}
 }
